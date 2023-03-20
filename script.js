@@ -1,61 +1,28 @@
-// select DOM elements
-const messageList = document.getElementById("message-list");
-const messageInput = document.getElementById("message-input");
-const form = document.querySelector("form");
+// Connect to Socket.IO server
+const socket = io();
 
-// add event listener to form submit
-form.addEventListener("submit", (event) => {
-	// prevent default form submission behavior
-	event.preventDefault();
-	
-	// get current date and time
-	const now = new Date();
-	const timestamp = now.toLocaleString("en-US", {
-		hour: "numeric",
-		minute: "numeric",
-		hour12: true
-	});
-	
-	// create new message element and add to message list
-	const li = document.createElement("li");
-	const usernameSpan = document.createElement("span");
-	const timestampSpan = document.createElement("span");
-	const messageSpan = document.createElement("span");
-	
-	usernameSpan.classList.add("message-username");
-	timestampSpan.classList.add("message-timestamp");
-	
-	usernameSpan.innerText = "You";
-	timestampSpan.innerText = timestamp;
-	messageSpan.innerText = messageInput.value;
-	
-	li.appendChild(usernameSpan);
-	li.appendChild(timestampSpan);
-	li.appendChild(messageSpan);
-	
-	messageList.appendChild(li);
-	
-	// clear input field
-	messageInput.value = "";
-	
-	// scroll to bottom of message list
-	messageList.scrollTop = messageList.scrollHeight;
+// Get DOM elements
+const messageForm = document.getElementById('message-form');
+const messageInput = document.getElementById('message-input');
+const messageList = document.getElementById('message-list');
+
+// Add event listener to message form
+messageForm.addEventListener('submit', function(event) {
+  event.preventDefault();
+  const message = messageInput.value;
+  if (message) {
+    // Emit message event to server
+    socket.emit('chat message', message);
+    // Clear message input
+    messageInput.value = '';
+  }
 });
 
-// add initial message to message list
-const li = document.createElement("li");
-const usernameSpan = document.createElement("span");
-const timestampSpan = document.createElement("span");
-const messageSpan = document.createElement("span");
-
-usernameSpan.classList.add("message-username");
-timestampSpan.classList.add("message-timestamp");
-
-usernameSpan.innerText = "Chat Bot";
-messageSpan.innerText = "Welcome to the chat!";
-
-li.appendChild(usernameSpan);
-li.appendChild(timestampSpan);
-li.appendChild(messageSpan);
-
-messageList.appendChild(li);
+// Add event listener for incoming messages
+socket.on('chat message', function(message) {
+  // Create new list item for message
+  const li = document.createElement('li');
+  li.innerText = message;
+  // Append new list item to message list
+  messageList.appendChild(li);
+});
