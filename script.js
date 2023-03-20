@@ -52,7 +52,6 @@ usernameSpan.classList.add("message-username");
 timestampSpan.classList.add("message-timestamp");
 
 usernameSpan.innerText = "Chat Bot";
-timestampSpan.innerText = "10:00 AM";
 messageSpan.innerText = "Welcome to the chat!";
 
 li.appendChild(usernameSpan);
