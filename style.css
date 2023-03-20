@@ -1,75 +1,73 @@
-body {
-	font-family: sans-serif;
+* {
+	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 }
 
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f5f5f5;
+}
+
 header {
-	background-color: #3f51b5;
-	color: white;
-	padding: 1em;
-}
-
-h1 {
-	margin: 0;
-}
-
-main {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	min-height: calc(100vh - 106px);
+	background-color: #007bff;
+	color: #fff;
+	padding: 20px;
+	text-align: center;
 }
 
 #chat-window {
-	background-color: white;
-	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-	border-radius: 5px;
-	max-width: 500px;
-	width: 100%;
-	padding: 1em;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+	margin: 50px auto;
+	max-width: 800px;
+	padding: 20px;
 }
 
 #message-list {
 	list-style: none;
-	padding: 0;
-	margin: 0;
-	height: 300px;
-	overflow-y: scroll;
+	margin-bottom: 20px;
+	max-height: 400px;
+	overflow-y: auto;
+	padding: 10px;
 }
 
 #message-list li {
-	margin-bottom: 0.5em;
+	margin-bottom: 10px;
 }
 
 #message-list li:last-child {
 	margin-bottom: 0;
 }
 
-#message-list li .message-author {
+#message-list .message-username {
 	font-weight: bold;
-	margin-right: 0.5em;
+	margin-right: 10px;
 }
 
-#message-list li .message-time {
+#message-list .message-timestamp {
+	color: #666;
 	font-size: 0.8em;
-	color: gray;
-	margin-left: 0.5em;
 }
 
 #message-input {
-	padding: 0.5em;
 	border: none;
 	border-bottom: 1px solid #ccc;
-	width: 100%;
+	font-size: 1.2em;
+	padding: 5px;
+	width: 80%;
 }
 
 button[type="submit"] {
-	background-color: #3f51b5;
-	color: white;
+	background-color: #007bff;
 	border: none;
-	padding: 0.5em;
-	border-radius: 5px;
+	color: #fff;
 	cursor: pointer;
+	font-size: 1.2em;
+	padding: 5px 10px;
+}
+
+button[type="submit"]:hover {
+	background-color: #0056b3;
 }
