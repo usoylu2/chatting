@@ -1,18 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Chat Application</title>
-	<link rel="stylesheet" href="style.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.min.js" integrity="sha512-U8P5f+f2gZJz/xO+VLl8NzW3qYce5pJoj5/ugc8a5WcSK/wtGm27tS0/sS8e1wJyV7F0zMam9f4L8uNGWlSmZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script src="script.js"></script>
+    <meta charset="UTF-8">
+    <title>Real-time Chat</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<div id="chat-container">
-		<div id="message-container"></div>
-		<form id="message-form">
-			<input type="text" id="message-input" autocomplete="off" placeholder="Type your message here...">
-			<button type="submit" id="send-button">Send</button>
-		</form>
-	</div>
+    <div id="messages"></div>
+    <form id="message-form" action="#">
+        <input type="text" id="message-input" placeholder="Type your message...">
+        <button type="submit" id="send-button">Send</button>
+    </form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js" integrity="sha512-2KOiWibPfEhJF9z9mxM6P33Myzcp0LkkOBcgejc5y+AM1hW8cPOoNTKX9Avr68fB5aq5B1H5QAz4IV4iuVRKwQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <script src="script.js"></script>
 </body>
 </html>
+
