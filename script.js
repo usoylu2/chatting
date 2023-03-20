@@ -1,28 +1,19 @@
-// Connect to Socket.IO server
 const socket = io();
 
-// Get DOM elements
 const messageForm = document.getElementById('message-form');
 const messageInput = document.getElementById('message-input');
-const messageList = document.getElementById('message-list');
+const messageContainer = document.getElementById('message-container');
 
-// Add event listener to message form
-messageForm.addEventListener('submit', function(event) {
-  event.preventDefault();
-  const message = messageInput.value;
-  if (message) {
-    // Emit message event to server
-    socket.emit('chat message', message);
-    // Clear message input
-    messageInput.value = '';
-  }
+messageForm.addEventListener('submit', e => {
+	e.preventDefault();
+	const message = messageInput.value;
+	socket.emit('message', message);
+	messageInput.value = '';
 });
 
-// Add event listener for incoming messages
-socket.on('chat message', function(message) {
-  // Create new list item for message
-  const li = document.createElement('li');
-  li.innerText = message;
-  // Append new list item to message list
-  messageList.appendChild(li);
+socket.on('response', message => {
+	const messageElement = document.createElement('p');
+	messageElement.innerText = message;
+	messageContainer.append(messageElement);
+	messageContainer.scrollTop = messageContainer.scrollHeight;
 });
